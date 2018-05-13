@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_account"
+        android:icon="@mipmap/baseline_video_library_black_24dp"
+        android:title="Mes videos"/>
+    <item android:id="@+id/nav_settings"
+        android:icon="@mipmap/baseline_video_library_black_24dp"
+        android:title="My settings"/>
+
+
+</menu>
