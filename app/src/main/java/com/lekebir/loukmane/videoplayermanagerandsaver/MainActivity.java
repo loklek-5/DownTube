@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.view.View.OnClickListener;
 //import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void initytActivity(){
         ytButton = (Button) findViewById(R.id.ytButton);
+
         ytButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
