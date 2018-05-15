@@ -9,13 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.view.View.OnClickListener;
-//import android.widget.Toolbar;
+//import android.view.View;
+//import android.widget.Button;
+//import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.util.Log;
+import android.widget.Toast;
+
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     //public Button ytButton;
     private android.webkit.WebView webView;
-
+    //private WebViewClient mWebViewClient;
 
 
     @Override
@@ -32,11 +33,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         webView = (WebView) findViewById(R.id.youtube_view);
-        webView.setWebViewClient(new MyWebClient());
+        webView.setWebViewClient(new MyWebClient(getApplicationContext()));
         webView.getSettings().setJavaScriptEnabled(true);
         webView.addJavascriptInterface(new WebAppInterface(this),"Android");
         webView.loadUrl("https://m.youtube.com");
         Log.d("ADebugTag", "Value: " + webView);
+        Toast.makeText(getApplicationContext(), webView.getUrl(), Toast.LENGTH_SHORT).show();
 
         mToolbar = findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         //initytActivity();
 
     }
+
 
 
 
