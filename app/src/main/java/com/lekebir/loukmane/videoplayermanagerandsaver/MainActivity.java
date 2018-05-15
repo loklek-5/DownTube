@@ -13,17 +13,30 @@ import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 //import android.widget.Toolbar;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
-    public Button ytButton;
+    //public Button ytButton;
+    private android.webkit.WebView webView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        webView = (WebView) findViewById(R.id.youtube_view);
+        webView.setWebViewClient(new MyWebClient());
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.addJavascriptInterface(new WebAppInterface(this),"Android");
+        webView.loadUrl("https://m.youtube.com");
+        Log.d("ADebugTag", "Value: " + webView);
 
         mToolbar = findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
@@ -37,9 +50,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        initytActivity();
+        //initytActivity();
 
     }
+
+
+
 
 
 
@@ -50,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    public void initytActivity(){
+    /*public void initytActivity(){
         ytButton = (Button) findViewById(R.id.ytButton);
 
         ytButton.setOnClickListener(new View.OnClickListener() {
@@ -61,5 +77,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 }

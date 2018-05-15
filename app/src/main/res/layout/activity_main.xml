@@ -10,30 +10,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="100">
+
+
+        <WebView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/youtube_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="90"/>
 
         <include
             layout="@layout/navigation_actionbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:inputType="textPersonName"
-            android:text="Main Layout"
-            android:textAlignment="center"
-            android:textSize="24dp" />
-
-        <Button
-            android:id="@+id/ytButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="YT" />
+            android:layout_weight="10" />
     </LinearLayout>
         <android.support.design.widget.NavigationView
             android:layout_width="wrap_content"
