@@ -12,10 +12,12 @@ import android.view.MenuItem;
 //import android.view.View;
 //import android.widget.Button;
 //import android.view.View.OnClickListener;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.util.Log;
 import android.widget.Toast;
+import android.webkit.WebResourceResponse;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -25,20 +27,32 @@ public class MainActivity extends AppCompatActivity {
     //public Button ytButton;
     private android.webkit.WebView webView;
     //private WebViewClient mWebViewClient;
+    private MyWebClient mWebClient;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mWebClient = new MyWebClient(getApplicationContext());
         webView = (WebView) findViewById(R.id.youtube_view);
-        webView.setWebViewClient(new MyWebClient(getApplicationContext()));
+        webView.setWebViewClient(mWebClient);
+
+        //webView.setWebChromeClient(new WebChromeClient());
+        WebChromeClient mSWWebChromeClient = new WebChromeClient() {
+            @Override
+            public void onReceivedTitle(WebView view, String title) {
+                //super.onReceivedTitle(view, title);
+                Toast.makeText(getApplicationContext(), "lok", Toast.LENGTH_SHORT).show();
+            }
+
+        };
+        webView.setWebChromeClient(mSWWebChromeClient);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.addJavascriptInterface(new WebAppInterface(this),"Android");
         webView.loadUrl("https://m.youtube.com");
-        Log.d("ADebugTag", "Value: " + webView);
-        Toast.makeText(getApplicationContext(), webView.getUrl(), Toast.LENGTH_SHORT).show();
+
+
 
         mToolbar = findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
